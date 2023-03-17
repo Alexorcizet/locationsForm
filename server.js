@@ -9,6 +9,8 @@ const http = require('http').createServer(app)
 app.use(express.json())
 app.use(express.static('public'))
 
+const port = process.env.PORT || 3030
+
 if (process.env.NODE_ENV === 'production') {
     // Express serve static files on production environment
     app.use(express.static(path.resolve(__dirname, 'public')))
@@ -22,18 +24,14 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors(corsOptions))
 }
 
-
+app.get('/**', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 app.post('/api/stationName', async (req, res) => {
     const isMailSent = await formService.sendData(req.body)
     res.send(isMailSent)
 })
-
-app.get('/**', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
-
-const port = process.env.PORT || 3030
 
 http.listen(port, () => {
     console.log('Server is running on port: ' + port)
