@@ -17,7 +17,7 @@ async function sendData(facilityData) {
 
         let mailOptions = {
             from: 'locationsform@gmail.com',
-            to: 'alexorcizet87@gmail.com',
+            to: 'Dima@buzzztech.com.com',
             subject: `טופס מיקומים ל${facilityData.facility}`,
             attachments: [{
                 filename: `${facilityData.facility}.csv`,
