@@ -33,7 +33,7 @@ app.post('/api/stationName', async (req, res) => {
     res.send(isMailSent)
 })
 
-http.listen(port, () => {
+app.listen(port, () => {
     console.log('Server is running on port: ' + port)
 })
 
