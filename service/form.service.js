@@ -1,6 +1,5 @@
 
 const nodemailer = require('nodemailer')
-const { Buffer } = require('node:buffer');
 
 async function sendData(facilityData) {
     const stations = facilityData.stations
