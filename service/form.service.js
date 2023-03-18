@@ -1,10 +1,13 @@
 
 const nodemailer = require('nodemailer')
+const { Buffer } = require('node:buffer');
 
 async function sendData(facilityData) {
     const stations = facilityData.stations
     let csv = ''
     stations.forEach(station => csv += station.join() + '\n')
+
+
     return new Promise((resolved, reject) => {
 
         let transporter = nodemailer.createTransport({
@@ -17,7 +20,8 @@ async function sendData(facilityData) {
 
         let mailOptions = {
             from: 'locationsform@gmail.com',
-            to: 'Dima@buzzztech.com.com',
+            to: 'Dima@buzzztech.com',
+            //to:'alexorcizet87@gmail.com'
             subject: `טופס מיקומים ל${facilityData.facility}`,
             attachments: [{
                 filename: `${facilityData.facility}.csv`,
